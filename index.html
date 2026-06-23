@@ -1,134 +1,140 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Testbook Courses Carousel</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
 }
 
-.course-section {
-  padding: 20px;
+.course-section{
+    padding:20px;
 }
 
-.section-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  border-left: 4px solid #2563eb;
-  padding-left: 12px;
+.section-title{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:18px;
+    border-left:4px solid #2563eb;
+    padding-left:12px;
 }
 
-.course-slider-wrapper {
-  position: relative;
+.course-slider-wrapper{
+    position:relative;
 }
 
-.course-slider {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  padding-bottom: 8px;
+.course-slider{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    padding-bottom:8px;
 }
 
-.course-slider::-webkit-scrollbar {
-  display: none;
+.course-slider::-webkit-scrollbar{
+    display:none;
 }
 
-.course-card {
-  min-width: 280px;
-  max-width: 280px;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.course-card{
+    min-width:280px;
+    max-width:280px;
+    border:1px solid #e5e7eb;
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
 
-.course-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  display: block;
+.course-card img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    display:block;
 }
 
-.course-content {
-  padding: 12px;
+.course-content{
+    padding:12px;
 }
 
-.course-title {
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.35;
-  min-height: 44px;
-  margin-bottom: 12px;
+.course-title{
+    font-size:16px;
+    font-weight:700;
+    line-height:1.4;
+    min-height:50px;
+    margin-bottom:12px;
+    word-break:normal;
+    overflow-wrap:anywhere;
 }
 
-.enroll-btn {
-  display: block;
-  text-align: center;
-  background: #11abc8;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 10px;
+.enroll-btn{
+    display:block;
+    text-align:center;
+    background:#11abc8;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    padding:10px;
+    border-radius:8px;
+    margin-bottom:10px;
 }
 
-.course-team {
-  font-size: 14px;
-  color: #6b7280;
+.course-team{
+    font-size:14px;
+    color:#6b7280;
 }
 
-.slider-btn {
-  position: absolute;
-  top: 40%;
-  transform: translateY(-50%);
-  width: 38px;
-  height: 38px;
-  border: none;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.15);
-  cursor: pointer;
-  z-index: 10;
-  font-size: 22px;
+.slider-btn{
+    position:absolute;
+    top:40%;
+    transform:translateY(-50%);
+    width:38px;
+    height:38px;
+    border:none;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 2px 6px rgba(0,0,0,.15);
+    cursor:pointer;
+    z-index:10;
+    font-size:22px;
 }
 
-.prev-btn {
-  left: -10px;
+.prev-btn{
+    left:-10px;
 }
 
-.next-btn {
-  right: -10px;
+.next-btn{
+    right:-10px;
 }
 
-@media(max-width:768px) {
-  .course-section {
-    padding: 16px;
-  }
+@media(max-width:768px){
 
-  .section-title {
-    font-size: 24px;
-  }
+    .course-section{
+        padding:16px;
+    }
 
-  .course-card {
-    min-width: 240px;
-    max-width: 240px;
-  }
+    .section-title{
+        font-size:24px;
+    }
 
-  .course-card img {
-    height: 135px;
-  }
+    .course-card{
+        min-width:240px;
+        max-width:240px;
+    }
 
-  .slider-btn {
-    display: none;
-  }
+    .course-card img{
+        height:135px;
+    }
+
+    .slider-btn{
+        display:none;
+    }
 }
 </style>
 </head>
@@ -136,85 +142,132 @@ body {
 <body>
 
 <section class="course-section">
-  <h2 class="section-title">Online classes of 375+ Exams</h2>
 
-  <div class="course-slider-wrapper">
-    <button class="slider-btn prev-btn" onclick="slideCourses(-1)">‹</button>
+<h2 class="section-title">
+Online classes of 375+ Exams
+</h2>
 
-    <div class="course-slider" id="courseSlider"></div>
+<div class="course-slider-wrapper">
 
-    <button class="slider-btn next-btn" onclick="slideCourses(1)">›</button>
-  </div>
+<button class="slider-btn prev-btn" onclick="slideCourses(-1)">
+‹
+</button>
+
+<div class="course-slider" id="courseSlider"></div>
+
+<button class="slider-btn next-btn" onclick="slideCourses(1)">
+›
+</button>
+
+</div>
+
 </section>
 
 <script>
+
 const commonLink =
 "https://testbook.com/superpass?utm_source=Website&utm_medium=WebsiteOrganic&utm_campaign=Coaching";
 
 const courses = [
-  [
-    "SSC CGL दहाड़ Live Batch",
-    "https://cdn.testbook.com/products/2026/May/20/__w-200-400-600__/image%20%281%29.png.png"
-  ],
-  [
-    "RRB Group D अभियान 2.0 Live Course 2026",
-    "https://cdn.testbook.com/products/2026/March/27/__w-200-400-600__/RRB%20Group%20D%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%202.0%20Live%20Course%202026_Update%2027-03-2026.png.png"
-  ],
-  [
-    "SSC CGL शिखर 2.0 2026 Live Course",
-    "https://cdn.testbook.com/products/2026/May/25/__w-200-400-600__/SSC%20CGL%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%202.0%202026%20%285%29.png.png"
-  ],
-  [
-    "RRB Group D अभियान Live Course 2026",
-    "https://cdn.testbook.com/products/2026/January/22/__w-200-400-600__/RRB%20Group%20D%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%20Live%20Course%202026.png.png"
-  ],
-  [
-    "SSC CHSL उड़ान 2.0 Live Course 2026",
-    "https://cdn.testbook.com/products/2026/May/25/__w-200-400-600__/SSC%20CHSL%20%E0%A4%89%E0%A4%A1%E0%A4%BC%E0%A4%BE%E0%A4%A8%202.jpg.jpeg"
-  ],
-  [
-    "Haryana CET Group D केसरी Live Batch",
-    "https://cdn.testbook.com/images/production/Haryana%20CET%20Group%20D%20%E0%A4%95%E0%A5%87%E0%A4%B8%E0%A4%B0%E0%A5%80%20%282%29_product_facultiesImage_all_1781875799.png"
-  ],
-  [
-    "RRB NTPC (UG) Final Shot Batch",
-    "https://cdn.testbook.com/images/production/RRB%20NTPC%20%28UG%29%20Final%20Shot%20Batch%20%281%29_product_facultiesImage_all_1776086503.png"
-  ],
-  [
-    "SBI PO 2026 Score Booster Live Batch",
-    "https://cdn.testbook.com/images/production/SBI%20PO%20Score%20Booster%20Live%20Batch%202026_product_facultiesImage_all_1777374395.png"
-  ]
+
+[
+"SSC CGL दहाड़ Live Batch",
+"https://cdn.testbook.com/products/2026/May/20/__w-200-400-600__/image%20%281%29.png.png"
+],
+
+[
+"RRB Group D अभियान 2.0 Live Course 2026",
+"https://cdn.testbook.com/products/2026/March/27/__w-200-400-600__/RRB%20Group%20D%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%202.0%20Live%20Course%202026_Update%2027-03-2026.png.png"
+],
+
+[
+"SSC CGL शिखर 2.0 2026 Live Course",
+"https://cdn.testbook.com/products/2026/May/25/__w-200-400-600__/SSC%20CGL%20%E0%A4%B6%E0%A4%BF%E0%A4%96%E0%A4%B0%202.0%202026%20%285%29.png.png"
+],
+
+[
+"RRB Group D अभियान Live Course 2026",
+"https://cdn.testbook.com/products/2026/January/22/__w-200-400-600__/RRB%20Group%20D%20%E0%A4%85%E0%A4%AD%E0%A4%BF%E0%A4%AF%E0%A4%BE%E0%A4%A8%20Live%20Course%202026.png.png"
+],
+
+[
+"SSC CHSL उड़ान 2.0 Live Course 2026",
+"https://cdn.testbook.com/products/2026/May/25/__w-200-400-600__/SSC%20CHSL%20%E0%A4%89%E0%A4%A1%E0%A4%BC%E0%A4%BE%E0%A4%A8%202.jpg.jpeg"
+],
+
+[
+"Haryana CET Group D केसरी Live Batch",
+"https://cdn.testbook.com/images/production/Haryana%20CET%20Group%20D%20%E0%A4%95%E0%A5%87%E0%A4%B8%E0%A4%B0%E0%A5%80%20%282%29_product_facultiesImage_all_1781875799.png"
+],
+
+[
+"RRB NTPC (UG) Final Shot Batch",
+"https://cdn.testbook.com/images/production/RRB%20NTPC%20%28UG%29%20Final%20Shot%20Batch%20%281%29_product_facultiesImage_all_1776086503.png"
+],
+
+[
+"SBI PO 2026 Score Booster Live Batch",
+"https://cdn.testbook.com/images/production/SBI%20PO%20Score%20Booster%20Live%20Batch%202026_product_facultiesImage_all_1777374395.png"
+]
+
 ];
 
-function renderCourses() {
-  const slider = document.getElementById("courseSlider");
+function renderCourses(){
 
-  slider.innerHTML = courses.map(course => `
+    const slider =
+    document.getElementById("courseSlider");
+
+    slider.innerHTML =
+    courses.map(course => `
+
     <div class="course-card">
-      <img src="${course[1]}" alt="${course[0]}" loading="lazy" />
 
-      <div class="course-content">
-        <div class="course-title">${course[0]}</div>
+        <img
+            src="${course[1]}"
+            alt="${course[0]}"
+            loading="lazy"
+        >
 
-        <a href="${commonLink}" target="_blank" rel="noopener" class="enroll-btn">
-          Enroll Now
-        </a>
+        <div class="course-content">
 
-        <div class="course-team">Testbook and Team</div>
-      </div>
+            <div class="course-title">
+                ${course[0]}
+            </div>
+
+            <a
+                href="${commonLink}"
+                target="_blank"
+                rel="noopener"
+                class="enroll-btn"
+            >
+                Enroll Now
+            </a>
+
+            <div class="course-team">
+                Testbook and Team
+            </div>
+
+        </div>
+
     </div>
-  `).join("");
+
+    `).join("");
 }
 
-function slideCourses(direction) {
-  document.getElementById("courseSlider").scrollBy({
-    left: direction * 300,
-    behavior: "smooth"
-  });
+function slideCourses(direction){
+
+    document
+    .getElementById("courseSlider")
+    .scrollBy({
+        left: direction * 300,
+        behavior: "smooth"
+    });
 }
 
 renderCourses();
+
 </script>
 
 </body>
 </html>
+```
