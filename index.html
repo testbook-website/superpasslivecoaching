@@ -3,305 +3,203 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Online Classes Widget</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #ffffff;
-  color: #111827;
+  font-family: Arial, sans-serif;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 16px;
+.course-section {
+  padding: 20px;
 }
 
-.classes-heading {
-  font-size: 20px;
-  font-weight: 600;
-  border-left: 3px solid #2d6bfa;
-  padding-left: 8px;
-  margin-bottom: 12px;
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  border-left: 4px solid #2563eb;
+  padding-left: 12px;
 }
 
-.carousel-header {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.carousel-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  cursor: pointer;
-}
-
-.carousel-viewport {
-  overflow: hidden;
-}
-
-.carousel-track {
-  display: flex;
-  gap: 16px;
-  transition: transform 0.3s ease;
-}
-
-.course-card {
-  flex: 0 0 100%;
-  max-width: 260px;
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #e5e7eb;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 2px 8px rgba(15,23,42,0.06);
-}
-
-.course-image-wrapper {
-  padding-top: 60%;
+.course-slider-wrapper {
   position: relative;
 }
 
-.course-image-wrapper img {
-  position: absolute;
-  inset: 0;
+.course-slider {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+}
+
+.course-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.course-card {
+  min-width: 280px;
+  max-width: 280px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.course-card img {
   width: 100%;
-  height: 100%;
+  height: 160px;
   object-fit: cover;
+  display: block;
 }
 
 .course-content {
   padding: 12px;
-  display: flex;
-  flex-direction: column;
 }
 
 .course-title {
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  min-height: 44px;
+  margin-bottom: 12px;
 }
 
-/* ENROLL BUTTON */
 .enroll-btn {
-  margin-top: 8px;
-  width: 100%;
-  padding: 8px 0;
+  display: block;
+  text-align: center;
+  background: #11abc8;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px;
   border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.course-team {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
   border: none;
-  background: #00b3d6;
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 600;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
   cursor: pointer;
+  z-index: 10;
+  font-size: 22px;
 }
 
-.enroll-btn:hover {
-  background: #009bb8;
+.prev-btn {
+  left: -10px;
 }
 
-.course-provider {
-  font-size: 12px;
-  color: #868b96;
-  margin-top: 6px;
+.next-btn {
+  right: -10px;
 }
 
-.course-meta {
-  font-size: 12px;
-  color: #5b5f69;
-  margin-top: 6px;
-}
+@media(max-width:768px) {
+  .course-section {
+    padding: 16px;
+  }
 
-/* RESPONSIVE */
-@media (min-width: 480px) {
-  .course-card { flex: 0 0 calc(50% - 8px); }
-}
-@media (min-width: 768px) {
-  .course-card { flex: 0 0 calc(33.333% - 10px); }
-}
-@media (min-width: 1024px) {
-  .course-card { flex: 0 0 calc(25% - 12px); }
-}
-.course-content {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+  .section-title {
+    font-size: 24px;
+  }
 
-.enroll-btn {
-  margin-top: auto;
+  .course-card {
+    min-width: 240px;
+    max-width: 240px;
+  }
+
+  .course-card img {
+    height: 135px;
+  }
+
+  .slider-btn {
+    display: none;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h3 class="classes-heading">Online classes of 375+ Exams</h3>
+<section class="course-section">
+  <h2 class="section-title">Online classes of 375+ Exams</h2>
 
-  <div class="carousel-header">
-    <button class="carousel-btn" data-prev>‹</button>
-    <button class="carousel-btn" data-next>›</button>
+  <div class="course-slider-wrapper">
+    <button class="slider-btn prev-btn" onclick="slideCourses(-1)">‹</button>
+
+    <div class="course-slider" id="courseSlider"></div>
+
+    <button class="slider-btn next-btn" onclick="slideCourses(1)">›</button>
   </div>
-
-  <div class="carousel-viewport" data-viewport>
-    <div class="carousel-track" data-track>
-
-      <!-- CARD 1 -->
-    
-      <!-- CARD 2 -->
-      <article class="course-card">
-        <div class="course-image-wrapper">
-          <img src="https://cdn.testbook.com/products/2025/September/29/__w-200-400-600__/SSC%20CGL%20Foundation%20%E0%A4%A8%E0%A5%80%E0%A4%B5%20Live%20Course%202026%20%281%29.png.png">
-        </div>
-        <div class="course-content">
-          <h4 class="course-title">SSC CGL नीव Live Course 2026</h4>
-         <button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
-          <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
-        </div>
-      </article>
-
-    <article class="course-card" role="group" aria-roledescription="slide">
-  <div class="course-image-wrapper">
-    <img src="https://cdn.testbook.com/products/2025/November/20/__w-200-400-600__/KVS%202025%20%28TGTPGTPRT%29%20-%20Tier%201.png.png" loading="lazy" />
-  </div>
-  <div class="course-content">
-    <h4 class="course-title">KVS 2025 (TGT/PGT/PRT) - Tier 1 - Live Foundation Batch</h4>
-
-  <button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
-
- <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
- 
-  </div>
-</article>
-
-<article class="course-card" role="group" aria-roledescription="slide">
-  <div class="course-image-wrapper">
-    <img src="https://cdn.testbook.com/products/2025/December/10/__w-200-400-600__/Free%20Content%20%286%29.png.png" loading="lazy" />
-  </div>
-  <div class="course-content">
-    <h4 class="course-title">SBI PO 2026 (Pre + Mains) Live Foundation Course</h4>
-
-<button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
- <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
-  </div>
-</article>
-
-<article class="course-card" role="group" aria-roledescription="slide">
-  <div class="course-image-wrapper">
-    <img src="https://cdn.testbook.com/products/2025/September/4/__w-200-400-600__/Course%20Cards%20%20Ishita%20.png.png" loading="lazy" />
-  </div>
-  <div class="course-content">
-    <h4 class="course-title">RRB Group D तरक्की Live Batch</h4>
-<button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
-
- <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
-  </div>
-</article>
-
-<article class="course-card" role="group" aria-roledescription="slide">
-  <div class="course-image-wrapper">
-    <img src="https://cdn.testbook.com/products/2025/September/30/__w-200-400-600__/RRB%20NPTC%202026%20%281%29.png.png" loading="lazy" />
-  </div>
-  <div class="course-content">
-    <h4 class="course-title">RRB NTPC 2025-26 लक्ष्य Live Course</h4>
-<button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
-
- <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
-  </div>
-</article>
-
-<article class="course-card" role="group" aria-roledescription="slide">
-  <div class="course-image-wrapper">
-    <img src="https://cdn.testbook.com/products/2025/July/10/__w-200-400-600__/RRB%20Technician%20GRADE%203%20Gurukul_UPDATED.png.png" loading="lazy" />
-  </div>
-  <div class="course-content">
-    <h4 class="course-title">RRB Technician Grade 3 गुरुकुल Live Batch</h4>
-
-   <button class="enroll-btn"
-  onclick="window.open('https://testbk.co/1i5nl','_blank')">
-  Enroll Now
-</button>
-
-
- <div class="course-provider">Testbook & Team</div>
-          <div class="course-meta">Hinglish</div>
-  </div>
-</article>
-
-
-    </div>
-  </div>
-</div>
+</section>
 
 <script>
-(function () {
-  const viewport = document.querySelector("[data-viewport]");
-  const track = document.querySelector("[data-track]");
-  const prevBtn = document.querySelector("[data-prev]");
-  const nextBtn = document.querySelector("[data-next]");
+const commonLink =
+"https://testbook.com/superpass?utm_source=Website&utm_medium=WebsiteOrganic&utm_campaign=Coaching";
 
-  let index = 0;
+const courses = [
+  ["IBPS RRB Clerk (Pre + Mains) Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/5.png.png"],
+  ["RRB NTPC Batch 2.0", "//cdn.testbook.com/products/2026/May/6/__w-200-400-600__/(UG).png.png"],
+  ["RRB Group D Marathi Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/4/__w-200-400-600__/22.png.png"],
+  ["RRB ALP CBT 1: Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/Cat%20Railways%20%282%29.png.png"],
+  ["RRB NTPC (UG) Final Shot Batch", "//cdn.testbook.com/products/2026/April/13/__w-200-400-600__/RRB%20NTPC%20%28UG%29%20Final%20Shot%20Batch%20%281%29.png.png"],
+  ["RRB Section Controller CBAT (PSYCHOMETRIC TEST): Complete Recorded Batch", "//cdn.testbook.com/products/2026/May/11/__w-200-400-600__/RRB%20Section%20Controller%20CBAT%20%28PSYCHOMETRIC%20TEST%29%20Complete%20Recorded%20Batch.png.png"],
+  ["RRB Group D Bangla: Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/RRB%20Group%20D%20Bangla.png.png"],
+  ["RRB ALP (CBT 1) Marathi Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/4/__w-200-400-600__/23.png.png"],
+  ["SSC CGL: Tier 2 Complete Recorded Batch", "//cdn.testbook.com/products/2026/March/2/__w-200-400-600__/SSC%20CGL%20Tier%202.png.png"],
+  ["RRB NTPC: Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/Cat%20Railways.png.png"],
+  ["RRB ALP CBT 2: Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/Cat%20Railways%20%283%29.png.png"],
+  ["RRB NTPC Bangla: Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/RRB%20NTPC%20Bangla.png.png"],
+  ["Quick Prep Batch - RRB NTPC", "//cdn.testbook.com/products/2026/April/17/__w-200-400-600__/5e6189da5f66e94f14a21f52_94.png.png"],
+  ["RRB NTPC (CBT 2) Rapid Revision Batch", "//cdn.testbook.com/products/2026/March/28/__w-200-400-600__/RRB%20NTPC%20%28CBT%202%29%20Rapid%20Revision%20Batch.png.png"],
+  ["Quick Prep Batch - SSC CGL", "//cdn.testbook.com/products/2026/April/17/__w-200-400-600__/5e6189da5f66e94f14a21f58_100.png.png"],
+  ["SSC CGL Prime Batch", "//cdn.testbook.com/products/2026/January/20/__w-200-400-600__/SSC%20CGL%20Prime%20Batch%20%20Recorded%20Course.png.png"],
+  ["RRB Clerk Marathi Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/4/__w-200-400-600__/29.png.png"],
+  ["IBPS RRB PO (Pre + Mains) Complete Recorded Batch", "//cdn.testbook.com/products/2025/July/3/__w-200-400-600__/6.png.png"]
+];
 
-  function cardsPerView() {
-    const w = viewport.clientWidth;
-    if (w >= 1024) return 4;
-    if (w >= 768) return 3;
-    if (w >= 480) return 2;
-    return 1;
-  }
+function renderCourses() {
+  const slider = document.getElementById("courseSlider");
 
-  function update() {
-    const cardWidth = track.children[0].offsetWidth + 16;
-    const maxIndex = track.children.length - cardsPerView();
-    index = Math.max(0, Math.min(index, maxIndex));
-    track.style.transform = `translateX(-${index * cardWidth}px)`;
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === maxIndex;
-  }
+  slider.innerHTML = courses.map(course => `
+    <div class="course-card">
+      <img src="${course[1]}" alt="${course[0]}" loading="lazy" />
 
-  prevBtn.onclick = () => { index--; update(); };
-  nextBtn.onclick = () => { index++; update(); };
-  window.onresize = update;
-  update();
-})();
+      <div class="course-content">
+        <div class="course-title">${course[0]}</div>
+
+        <a href="${commonLink}" target="_blank" rel="noopener" class="enroll-btn">
+          Enroll Now
+        </a>
+
+        <div class="course-team">Testbook and Team</div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function slideCourses(direction) {
+  document.getElementById("courseSlider").scrollBy({
+    left: direction * 300,
+    behavior: "smooth"
+  });
+}
+
+renderCourses();
 </script>
 
 </body>
